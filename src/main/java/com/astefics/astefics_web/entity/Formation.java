@@ -16,7 +16,7 @@ public class Formation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private long id;
+    private int id;
     @Column(name = "name")
     private String name;
     @Column(name = "begin_at")
@@ -47,11 +47,11 @@ public class Formation {
         this.students = students;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
