@@ -3,10 +3,13 @@ package com.astefics.astefics_web.controller;
 import com.astefics.astefics_web.DAO.TeacherDAO;
 import com.astefics.astefics_web.entity.Teacher;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class TeacherController {
@@ -30,5 +33,23 @@ public class TeacherController {
         } else {
             return "noRessource";
         }
+    }
+
+    @GetMapping("/newTeacher")
+    public String newTeacher(Model model) {
+        model.addAttribute("teacher", new Teacher());
+        return "teacher/teacherForm";
+    }
+
+    @PostMapping("/newTeacher")
+    public String saveNewTeacher(@ModelAttribute("teacher") Teacher teacher) {
+        dao.addTeacher(teacher);
+        return "redirect:/teachers";
+    }
+
+    @GetMapping("/deleteTeacher/{id}")
+    public String deleteTeacher(@PathVariable("id") String id) {
+        dao.deleteTeacher(Integer.parseInt(id));
+        return "redirect:/teachers";
     }
 }

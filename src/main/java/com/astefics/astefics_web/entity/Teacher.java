@@ -2,6 +2,9 @@ package com.astefics.astefics_web.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "teachers")
 public class Teacher {
@@ -14,6 +17,9 @@ public class Teacher {
     private String lastname;
     @Column(name = "firstname")
     private String firstname;
+
+    @OneToMany(mappedBy = "teacher")
+    private List<Formation> formations = new ArrayList<>();
 
     public int getId() {
         return id;
@@ -39,12 +45,21 @@ public class Teacher {
         this.firstname = firstname;
     }
 
+    public List<Formation> getFormations() {
+        return formations;
+    }
+
+    public void setFormations(List<Formation> formations) {
+        this.formations = formations;
+    }
+
     @Override
     public String toString() {
         return "Teacher{" +
                 "id=" + id +
                 ", lastname='" + lastname + '\'' +
                 ", firstname='" + firstname + '\'' +
+                ", formations=" + formations +
                 '}';
     }
 }

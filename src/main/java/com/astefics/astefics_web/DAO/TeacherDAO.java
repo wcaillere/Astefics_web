@@ -33,4 +33,14 @@ public class TeacherDAO {
         return teacher;
     }
 
+    public void addTeacher(Teacher teacher) {
+        repository.save(teacher);
+    }
+
+    public void deleteTeacher(Integer id) {
+        if (getOneTeacherById(id) != null) {
+            repository.deleteById(id);
+        }
+    }
+
 }
