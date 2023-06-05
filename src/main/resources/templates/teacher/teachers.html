@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/headfiles.html :: headfiles (title='Astefics - Formateurs')}"></head>
+<body>
+<nav th:replace="~{fragments/navbar.html :: navbar}"></nav>
+<div class="text-center mt-3" style="color: cornflowerblue">
+    <h1 class="mt-4">Formateurs</h1>
+</div>
+<table class="table table-dark table-hover table-striped-columns m-auto mt-5" style="width: fit-content">
+    <thead>
+    <tr>
+        <th class="align-middle text-center" scope="col">Id</th>
+        <th class="align-middle text-center" scope="col">Nom</th>
+        <th class="align-middle text-center" scope="col">Prénom</th>
+        <th class="align-middle text-center" scope="col">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="teacher: ${teachers}">
+        <td class="align-middle text-center px-3" th:text="${teacher.id}"></td>
+        <td class="align-middle text-center px-3" th:text="${teacher.lastname}"></td>
+        <td class="align-middle text-center px-3" th:text="${teacher.firstname}"></td>
+        <td class="align-middle text-center px-3 py-3">
+            <a class="btn btn-primary mx-2"><i class="bi bi-card-text" style="margin-right: 6px"></i>Afficher
+                Détails</a>
+            <a class="btn btn-success mx-2"><i class="bi bi-pencil" style="margin-right: 6px"></i>Modifier</a>
+            <a class="btn btn-warning mx-2 text-danger"><i class="bi bi-trash"
+                                                           style="margin-right: 6px"></i>Supprimer</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

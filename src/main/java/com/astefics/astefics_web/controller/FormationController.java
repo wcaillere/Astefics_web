@@ -8,6 +8,6 @@ public class FormationController {
 
     @GetMapping("/formations")
     public String GetFormations() {
-        return "formations";
+        return "formation/formations";
     }
 }
