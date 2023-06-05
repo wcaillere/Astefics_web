@@ -43,4 +43,12 @@ public class CategoryDAO {
             repository.deleteById(id);
         }
     }
+
+    public void modifyCategory(Integer id, String newName) {
+        Category category = new Category();
+        category.setId(id);
+        category.setName(newName);
+
+        repository.save(category);
+    }
 }

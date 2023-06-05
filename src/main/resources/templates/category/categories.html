@@ -19,9 +19,12 @@
         <td class="align-middle text-center px-3" th:text="${category.id}"></td>
         <td class="align-middle text-center px-3" th:text="${category.name}"></td>
         <td class="align-middle text-center px-3 py-3">
-            <button class="btn btn-primary mx-2">Afficher Détails</button>
-            <button class="btn btn-success mx-2">Modifier</button>
-            <a class="btn btn-warning mx-2" th:onclick="askConfirmationDelete([[${category.id}]])">Supprimer</a>
+            <a class="btn btn-primary mx-2"><i class="bi bi-card-text" style="margin-right: 6px"></i>Afficher
+                Détails</a>
+            <a class="btn btn-success mx-2" th:onclick="askNewName([[${category.id}]])"><i
+                    class="bi bi-pencil" style="margin-right: 6px"></i>Modifier</a>
+            <a class="btn btn-warning mx-2 text-danger" th:onclick="askConfirmationDelete([[${category.id}]])"><i
+                    class="bi bi-trash" style="margin-right: 6px"></i>Supprimer</a>
         </td>
     </tr>
     </tbody>
@@ -40,6 +43,13 @@
     function askConfirmationDelete(id) {
         if (confirm("Voulez vous vraiment supprimer cette catégorie ?")) {
             window.location.href = ("/deleteCategory/" + id)
+        }
+    }
+
+    function askNewName(id) {
+        let newName = prompt("Entrez le nouveau nom de la catégorie :");
+        if (newName != null) {
+            window.location.href = ("/modifyCategory/" + id + "/" + newName)
         }
     }
 </script>
