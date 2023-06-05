@@ -2,11 +2,16 @@ package com.astefics.astefics_web.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "formations")
 public class Formation {
+
+    @ManyToMany(mappedBy = "formations")
+    List<Student> students = new ArrayList<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,4 +38,109 @@ public class Formation {
     @ManyToOne(targetEntity = Teacher.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_teacher")
     private Teacher teacher;
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Date getBegin_at() {
+        return begin_at;
+    }
+
+    public void setBegin_at(Date begin_at) {
+        this.begin_at = begin_at;
+    }
+
+    public int getNbDays() {
+        return nbDays;
+    }
+
+    public void setNbDays(int nbDays) {
+        this.nbDays = nbDays;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
+    public Level getLevel() {
+        return level;
+    }
+
+    public void setLevel(Level level) {
+        this.level = level;
+    }
+
+    public Boolean getOnline() {
+        return isOnline;
+    }
+
+    public void setOnline(Boolean online) {
+        isOnline = online;
+    }
+
+    public String getProgram() {
+        return program;
+    }
+
+    public void setProgram(String program) {
+        this.program = program;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
+    }
+
+    @Override
+    public String toString() {
+        return "Formation{" +
+                "students=" + students +
+                ", id=" + id +
+                ", name='" + name + '\'' +
+                ", begin_at=" + begin_at +
+                ", nbDays=" + nbDays +
+                ", price=" + price +
+                ", level=" + level +
+                ", isOnline=" + isOnline +
+                ", program='" + program + '\'' +
+                ", category=" + category +
+                ", teacher=" + teacher +
+                '}';
+    }
 }
