@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -18,6 +19,18 @@ public class TeacherDAO {
 
     public List<Teacher> getAllTeachers() {
         return repository.findAll();
+    }
+
+    public Teacher getOneTeacherById(Integer id) {
+        Teacher teacher = null;
+
+        Optional<Teacher> fundTeacher = repository.findById(id);
+
+        if (fundTeacher.isPresent()) {
+            teacher = fundTeacher.get();
+        }
+
+        return teacher;
     }
 
 }
