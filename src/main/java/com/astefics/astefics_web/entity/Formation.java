@@ -30,7 +30,7 @@ public class Formation {
     private Level level;
     @Column(name = "is_online")
     private Boolean isOnline;
-    @Column(name = "program")
+    @Column(name = "program", length = 1000)
     private String program;
     @ManyToOne(targetEntity = Category.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_category")

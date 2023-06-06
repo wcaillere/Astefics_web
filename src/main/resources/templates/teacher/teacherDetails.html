@@ -34,7 +34,7 @@
 <script>
     function askConfirmationDelete(id) {
         if (confirm("Voulez vous vraiment supprimer ce formateur ?")) {
-            window.location.href = ("/deleteTeacher/" + id)
+            document.location.assign("/deleteTeacher/" + id)
         }
     }
 </script>

@@ -1,7 +1,6 @@
 package com.astefics.astefics_web.DAO;
 
 import com.astefics.astefics_web.entity.Student;
-import com.astefics.astefics_web.entity.Teacher;
 import com.astefics.astefics_web.repository.IStudentRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;

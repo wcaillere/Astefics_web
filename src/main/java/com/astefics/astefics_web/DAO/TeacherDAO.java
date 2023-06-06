@@ -1,6 +1,5 @@
 package com.astefics.astefics_web.DAO;
 
-import com.astefics.astefics_web.entity.Category;
 import com.astefics.astefics_web.entity.Teacher;
 import com.astefics.astefics_web.repository.ITeacherRepository;
 import jakarta.transaction.Transactional;
