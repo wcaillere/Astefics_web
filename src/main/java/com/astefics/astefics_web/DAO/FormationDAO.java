@@ -2,6 +2,7 @@ package com.astefics.astefics_web.DAO;
 
 import com.astefics.astefics_web.entity.Category;
 import com.astefics.astefics_web.entity.Formation;
+import com.astefics.astefics_web.entity.Student;
 import com.astefics.astefics_web.repository.IFormationRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,5 +31,15 @@ public class FormationDAO {
         }
 
         return formation;
+    }
+
+    public void addFormation(Formation formation) {
+        repository.save(formation);
+    }
+
+    public void deleteFormation(Integer id) {
+        if (getOneFormationById(id) != null) {
+            repository.deleteById(id);
+        }
     }
 }

@@ -1,6 +1,7 @@
 package com.astefics.astefics_web.entity;
 
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -12,7 +13,6 @@ public class Formation {
 
     @ManyToMany(mappedBy = "formations")
     List<Student> students = new ArrayList<>();
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -20,24 +20,32 @@ public class Formation {
     @Column(name = "name")
     private String name;
     @Column(name = "begin_at")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date begin_at;
     @Column(name = "nb_days")
     private int nbDays;
     @Column(name = "price")
     private float price;
-    @ManyToOne(targetEntity = Level.class, cascade = CascadeType.ALL)
+    @ManyToOne(targetEntity = Level.class, cascade = {CascadeType.REFRESH, CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "id_level")
     private Level level;
     @Column(name = "is_online")
     private Boolean isOnline;
     @Column(name = "program", length = 1000)
     private String program;
-    @ManyToOne(targetEntity = Category.class, cascade = CascadeType.ALL)
+    @ManyToOne(targetEntity = Category.class, cascade = {CascadeType.REFRESH, CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "id_category")
     private Category category;
-    @ManyToOne(targetEntity = Teacher.class, cascade = CascadeType.ALL)
+    @ManyToOne(targetEntity = Teacher.class, cascade = {CascadeType.REFRESH, CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "id_teacher")
     private Teacher teacher;
+
+    @PreRemove
+    private void removeStudentsAssociations() {
+        for (Student student : this.students) {
+            student.getFormations().remove(this);
+        }
+    }
 
     public List<Student> getStudents() {
         return students;

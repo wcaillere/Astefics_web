@@ -18,8 +18,8 @@ public class Student {
     @Column(name = "firstname", length = 40, nullable = false)
     private String firstname;
 
-    @ManyToMany
-    @JoinTable(name = "inscriptions", joinColumns = {@JoinColumn(name = "id_student")}, inverseJoinColumns = {@JoinColumn(name = "id_formation")})
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name = "inscriptions", joinColumns = @JoinColumn(name = "id_student"), inverseJoinColumns = @JoinColumn(name = "id_formation"))
     private List<Formation> formations = new ArrayList<>();
 
     public int getId() {
