@@ -1,4 +1,4 @@
-function validateTeacher() {
+function validatePerson() {
 
     let validate = true;
 

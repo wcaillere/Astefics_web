@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/headfiles.html :: headfiles (title='Astefics - Stagiaires')}"></head>
+<body>
+<nav th:replace="~{fragments/navbar.html :: navbar}"></nav>
+<div class="text-center mt-3" style="color: cornflowerblue">
+    <h1 class="mt-4" th:text="'Détails du stagiaire ' + ${student.id}"></h1>
+</div>
+<div class="text-center mt-3" th:object="${student}">
+    <table class="table table-dark table-hover table-striped-columns m-auto mt-5" style="width: fit-content">
+        <tbody>
+        <tr>
+            <td>Id</td>
+            <td th:text="*{id}"></td>
+        </tr>
+        <tr>
+            <td>Nom</td>
+            <td th:text="*{lastname}"></td>
+        </tr>
+        <tr>
+            <td>Prénom</td>
+            <td th:text="*{firstname}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div class="text-center mt-5">
+    <a class="btn btn-success mx-2" th:href="@{/modifyStudent/{id}(id=${student.id})}"><i class="bi bi-pencil"
+                                                                                          style="margin-right: 6px"></i>Modifier</a>
+    <a class="btn btn-warning mx-2 text-danger" th:onclick="askConfirmationDelete([[${student.id}]])"><i
+            class="bi bi-trash"
+            style="margin-right: 6px"></i>Supprimer</a>
+</div>
+<script>
+    function askConfirmationDelete(id) {
+        if (confirm("Voulez vous vraiment supprimer ce formateur ?")) {
+            window.location.href = ("/deleteStudent/" + id)
+        }
+    }
+</script>
+</body>
+</html>

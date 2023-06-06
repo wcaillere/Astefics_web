@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/headfiles.html :: headfiles (title='Astefics - Stagiaires')}"></head>
+<body>
+<nav th:replace="~{fragments/navbar.html :: navbar}"></nav>
+<div class="text-center mt-3" style="color: cornflowerblue">
+    <h1 class="mt-4">Stagiaires</h1>
+    <a class="btn btn-primary mt-4" href="/newStudent">Créer un nouveau stagiaire</a>
+</div>
+<table class="table table-dark table-hover table-striped m-auto mt-3" style="width: fit-content">
+    <thead>
+    <tr>
+        <th class="align-middle text-center" scope="col">Id</th>
+        <th class="align-middle text-center" scope="col">Nom</th>
+        <th class="align-middle text-center" scope="col">Prénom</th>
+        <th class="align-middle text-center" scope="col">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="student: ${students}">
+        <td class="align-middle text-center px-3" th:text="${student.id}"></td>
+        <td class="align-middle text-center px-3" th:text="${student.lastname}"></td>
+        <td class="align-middle text-center px-3" th:text="${student.firstname}"></td>
+        <td class="align-middle text-center px-3 py-3">
+            <a class="btn btn-primary mx-2" th:href="@{/student/{id}(id=${student.id})}"><i class="bi bi-card-text"
+                                                                                            style="margin-right: 6px"></i>Afficher
+                Détails</a>
+            <a class="btn btn-success mx-2" th:href="@{/modifyStudent/{id}(id=${student.id})}"><i class="bi bi-pencil"
+                                                                                                  style="margin-right: 6px"
+            ></i>Modifier</a>
+            <a class="btn btn-warning mx-2 text-danger" th:onclick="askConfirmationDelete([[${student.id}]])"><i
+                    class="bi bi-trash"
+                    style="margin-right: 6px"></i>Supprimer</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<script>
+    function askConfirmationDelete(id) {
+        if (confirm("Voulez vous vraiment supprimer cet étudiant ?")) {
+            window.location.href = ("/deleteStudent/" + id)
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{fragments/headfiles.html :: headfiles (title='Astefics - nouveau formateur')}"></head>
+<head th:replace="~{fragments/headfiles.html :: headfiles (title='Astefics - modifier formateur')}"></head>
 <body>
 <nav th:replace="~{fragments/navbar.html :: navbar}"></nav>
 <div class="text-center mt-3" style="color: cornflowerblue">
@@ -33,7 +33,7 @@
     form.on("submit", function (e) {
         e.preventDefault();
 
-        if (validateTeacher()) {
+        if (validatePerson()) {
             e.currentTarget.submit();
         }
     })

@@ -36,9 +36,11 @@ public class CategoryController {
         return "redirect:/categories";
     }
 
-    @GetMapping("/modifyCategory/{id}/{newName}")
-    public String deleteCategory(@PathVariable("id") String id, @PathVariable("newName") String newName) {
-        dao.modifyCategory(Integer.parseInt(id), newName);
+    @GetMapping({"/modifyCategory/{id}/{newName}", "/modifyCategory/{id}/"})
+    public String deleteCategory(@PathVariable("id") String id, @PathVariable(value = "newName", required = false) String newName) {
+        if (newName != null) {
+            dao.modifyCategory(Integer.parseInt(id), newName);
+        }
         return "redirect:/categories";
     }
 }
