@@ -10,7 +10,7 @@ public class Level {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
 
     public int getId() {

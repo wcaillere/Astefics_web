@@ -13,9 +13,9 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-    @Column(name = "lastname")
+    @Column(name = "lastname", length = 40, nullable = false)
     private String lastname;
-    @Column(name = "firstname")
+    @Column(name = "firstname", length = 40, nullable = false)
     private String firstname;
 
     @ManyToMany

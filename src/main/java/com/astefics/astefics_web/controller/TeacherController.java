@@ -52,4 +52,21 @@ public class TeacherController {
         dao.deleteTeacher(Integer.parseInt(id));
         return "redirect:/teachers";
     }
+
+    @GetMapping("/modifyTeacher/{id}")
+    public String modifyTeacher(@PathVariable("id") String id, Model model) {
+        Teacher teacher = dao.getOneTeacherById(Integer.parseInt(id));
+        if (teacher != null) {
+            model.addAttribute("teacher", teacher);
+            return "teacher/modifyTeacher";
+        } else {
+            return "noRessource";
+        }
+    }
+
+    @PostMapping("/modifyTeacher")
+    public String saveModifiedTeacher(@ModelAttribute("teacher") Teacher teacher) {
+        dao.addTeacher(teacher);
+        return "redirect:/teachers";
+    }
 }
