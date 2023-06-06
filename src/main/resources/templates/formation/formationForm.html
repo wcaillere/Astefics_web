@@ -47,7 +47,7 @@
             <input class="form-control" id="nbDays" th:field="*{nbDays}" type="number">
             <span id="nbDaysError"
                   style="color: red; visibility: hidden"
-                  th:text="${'Veuillez entrer un nombre valide'}"></span>
+                  th:text="${'Veuillez entrer un nombre valide (positif)'}"></span>
         </div>
     </div>
 
@@ -95,17 +95,18 @@
 
     <div class="mt-3">
         <label class="form-label">Programme</label>
-        <textarea class="form-control" id="program" th:field="*{program}"></textarea>
+        <textarea class="form-control" id="program" placeholder="1000 caractères maximum"
+                  th:field="*{program}"></textarea>
         <span id="programError"
               style="color: red; visibility: hidden"
-              th:text="${'Veuillez remplir le programme'}"></span>
+              th:text="${'Veuillez remplir le programme correctement (entre 1 et 1000 caractères)'}"></span>
     </div>
 
     <div class="mt-3">
         <label class="form-label">Étudiants</label>
         <div th:each="student: ${students}">
             <input class="form-check-input" th:field="${formation.students}" th:value="${student.id}"
-                   type="checkbox"><span th:text="${student.firstname} + ${student.lastname}"></span>
+                   type="checkbox"><span th:text="' ' + ${student.firstname} +' '+ ${student.lastname}"></span>
         </div>
     </div>
 
@@ -118,7 +119,7 @@
     form.on("submit", function (e) {
         e.preventDefault();
 
-        if (true) {
+        if (validateFormation()) {
             e.currentTarget.submit();
         }
     })

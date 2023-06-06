@@ -11,7 +11,9 @@ import java.util.List;
 @Table(name = "formations")
 public class Formation {
 
-    @ManyToMany(mappedBy = "formations")
+
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name = "inscriptions", joinColumns = @JoinColumn(name = "id_formation"), inverseJoinColumns = @JoinColumn(name = "id_student"))
     List<Student> students = new ArrayList<>();
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,6 +47,10 @@ public class Formation {
         for (Student student : this.students) {
             student.getFormations().remove(this);
         }
+    }
+
+    public void addStudent(Student student) {
+        students.add(student);
     }
 
     public List<Student> getStudents() {
