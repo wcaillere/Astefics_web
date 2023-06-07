@@ -4,7 +4,6 @@ import com.astefics.astefics_web.entity.Level;
 import com.astefics.astefics_web.repository.ILevelRepository;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

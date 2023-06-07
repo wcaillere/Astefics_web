@@ -4,7 +4,6 @@ import com.astefics.astefics_web.entity.Student;
 import com.astefics.astefics_web.repository.IStudentRepository;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
