@@ -73,7 +73,7 @@
 </table>
 <script>
     function askConfirmationDelete(id) {
-        if (confirm("Voulez vous vraiment supprimer ce formateur ?")) {
+        if (confirm("Voulez vous vraiment supprimer ce formateur ? Cela entraînera également la suppression de ses formations")) {
             document.location.assign("/deleteTeacher/" + id)
         }
     }

@@ -44,7 +44,7 @@
 
 <script>
     function askConfirmationDelete(id) {
-        if (confirm("Voulez vous vraiment supprimer cette catégorie ?")) {
+        if (confirm("Voulez vous vraiment supprimer cette catégorie ? Cela entraînera la suppression des formations liées à celle-ci")) {
             window.location.href = ("/deleteCategory/" + id)
         }
     }
