@@ -7,10 +7,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,8 +27,14 @@ public class FormationController {
     private StudentDAO studentDao;
 
     @GetMapping("/formations")
-    public String GetFormations(Model model) {
-        model.addAttribute("formations", dao.getAllFormations());
+    public String GetFormations(@RequestParam(name = "idCategory", required = false) String idCategory, Model model) {
+        if (idCategory != null) {
+            model.addAttribute("formations", dao.getFormationsByCategory(idCategory));
+            model.addAttribute("currentCategory", idCategory);
+        } else {
+            model.addAttribute("formations", dao.getAllFormations());
+        }
+        model.addAttribute("categories", categoryDao.getAllCategories());
         return "formation/formations";
     }
 

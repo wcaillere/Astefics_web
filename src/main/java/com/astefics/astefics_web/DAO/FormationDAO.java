@@ -23,6 +23,10 @@ public class FormationDAO {
         return repository.findAll();
     }
 
+    public List<Formation> getFormationsByCategory(String idCategory) {
+        return repository.getFormationsByCategory(idCategory);
+    }
+
     public Formation getOneFormationById(Integer id) {
         Formation formation = null;
         Optional<Formation> fundFormation = repository.findById(id);
