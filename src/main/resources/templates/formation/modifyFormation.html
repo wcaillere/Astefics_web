@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/headfiles.html :: headfiles (title='Astefics - modifier formation')}"></head>
+<body>
+
+<nav th:replace="~{fragments/navbar.html :: navbar}"></nav>
+<div class="text-center mt-3" style="color: cornflowerblue">
+    <h1 class="mt-4" th:text="'Modifier formation d\'id ' + ${formation.id}"></h1>
+</div>
+<form class="w-50 m-auto mt-4" id="idForm" method="post" th:action="@{/modifyFormation}" th:object="${formation}">
+    <input th:field="*{id}" th:value="${formation.getId()}" type="hidden">
+    <div class="d-flex justify-content-between">
+        <div style="width: 63%">
+            <div>
+                <label class="form-label">Nom de la formation</label>
+                <input class="form-control" id="name" placeholder="Nom de la formation (255 caractères maximum)"
+                       th:field="*{name}">
+            </div>
+            <span id="nameError"
+                  style="color: red; visibility: hidden"
+                  th:text="${'Veuillez entrer un nom valide (255 caractères maximum)'}"></span>
+        </div>
+        <div style="width: 33%">
+            <div>
+                <label class="form-label">Formateur</label>
+                <select class="form-select" name="teacher" th:object="${teachers}">
+                    <th:block class="form-select" th:each="teacher : ${teachers}">
+                        <option th:text="${teacher.firstname} + ' ' + ${teacher.lastname}"
+                                th:value="${teacher.id}"></option>
+                    </th:block>
+                </select>
+            </div>
+            <span id="teacherError"
+                  style="color: red; visibility: hidden"
+                  th:text="${'Veuillez entrer un formateur valide'}"></span>
+        </div>
+    </div>
+
+    <div class="mt-3 d-flex justify-content-between">
+        <div style="width: 48%">
+            <label class="form-label">Date</label>
+            <input class="form-control" id="date" th:field="*{begin_at}" type="date">
+            <span id="dateError"
+                  style="color: red; visibility: hidden"
+                  th:text="${'Veuillez entrer une date valide'}"></span>
+        </div>
+        <div style="width: 48%">
+            <label class="form-label">Durée (nombre de jours)</label>
+            <input class="form-control" id="nbDays" th:field="*{nbDays}" type="number">
+            <span id="nbDaysError"
+                  style="color: red; visibility: hidden"
+                  th:text="${'Veuillez entrer un nombre valide (positif)'}"></span>
+        </div>
+    </div>
+
+    <div class="mt-3">
+        <label class="form-label">Prix de la formation</label>
+        <input class="form-control" id="price" th:field="*{price}" type="number">
+        <span id="priceError"
+              style="color: red; visibility: hidden"
+              th:text="${'Veuillez entrer un prix valide'}"></span>
+    </div>
+    <div class="mt-3 d-flex justify-content-between">
+        <div>
+            <label class="form-label">Catégorie</label>
+            <select class="form-select" th:field="*{category}">
+                <th:block class="form-select" th:each="category : ${categories}">
+                    <option th:text="${category.name}" th:value="${category.id}"></option>
+                </th:block>
+            </select>
+            <span id="categoryError"
+                  style="color: red; visibility: hidden"
+                  th:text="${'Veuillez entrer une catégorie valide'}"></span>
+        </div>
+        <div>
+            <label class="form-label">Niveau</label>
+            <select class="form-select" th:field="*{level}">
+                <th:block class="form-select" th:each="level : ${levels}">
+                    <option th:text="${level.name}" th:value="${level.id}"></option>
+                </th:block>
+            </select>
+            <span id="levelError"
+                  style="color: red; visibility: hidden"
+                  th:text="${'Veuillez entrer un niveau valide'}"></span>
+        </div>
+        <div>
+            <label class="form-label">En ligne</label>
+            <select class="form-select" th:field="*{online}">
+                <option value="0">non</option>
+                <option value="1">oui</option>
+            </select>
+            <span id="isOnlineError"
+                  style="color: red; visibility: hidden"
+                  th:text="${'Veuillez sélectionner un choix'}"></span>
+        </div>
+    </div>
+
+    <div class="mt-3">
+        <label class="form-label">Programme</label>
+        <textarea class="form-control" id="program" placeholder="1000 caractères maximum"
+                  th:field="*{program}"></textarea>
+        <span id="programError"
+              style="color: red; visibility: hidden"
+              th:text="${'Veuillez remplir le programme correctement (entre 1 et 1000 caractères)'}"></span>
+    </div>
+
+    <div class="mt-3">
+        <label class="form-label">Étudiants</label>
+        <div th:each="student: ${students}">
+            <input class="form-check-input" name="students" th:checked="${formation.students.contains(student)}"
+                   th:value="${student.id}" type="checkbox"><span
+                th:text="' ' + ${student.firstname} +' '+ ${student.lastname}"></span>
+        </div>
+    </div>
+
+    <button class="btn btn-primary w-25 m-auto mt-3" type="submit">Valider</button>
+</form>
+
+<script>
+    let form = $("#idForm");
+
+    form.on("submit", function (e) {
+        e.preventDefault();
+
+        if (validateFormation()) {
+            e.currentTarget.submit();
+        }
+    })
+</script>
+<script th:src="@{/js/validation.js}"></script>
+</body>
+</html>

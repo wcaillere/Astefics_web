@@ -85,4 +85,25 @@ public class FormationController {
         dao.deleteFormation(Integer.parseInt(id));
         return "redirect:/formations";
     }
+
+    @GetMapping("/modifyFormation/{id}")
+    public String modifyFormation(@PathVariable("id") String id, Model model) {
+        Formation formation = dao.getOneFormationById(Integer.parseInt(id));
+        if (formation != null) {
+            model.addAttribute("formation", formation);
+            model.addAttribute("levels", levelDao.getAllLevels());
+            model.addAttribute("categories", categoryDao.getAllCategories());
+            model.addAttribute("teachers", teacherDAO.getAllTeachers());
+            model.addAttribute("students", studentDao.getAllStudents());
+            return "formation/modifyFormation";
+        } else {
+            return "noRessource";
+        }
+    }
+
+    @PostMapping("/modifyFormation")
+    public String saveModifiedFormation(@ModelAttribute("formation") Formation formation) {
+        dao.addFormation(formation);
+        return "redirect:/formations";
+    }
 }
