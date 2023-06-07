@@ -3,6 +3,7 @@ package com.astefics.astefics_web.controller;
 import com.astefics.astefics_web.DAO.*;
 import com.astefics.astefics_web.entity.Formation;
 import com.astefics.astefics_web.entity.Student;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,21 +16,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
+@AllArgsConstructor
 public class FormationController {
 
-    @Autowired
     private FormationDAO dao;
 
-    @Autowired
     private LevelDAO levelDao;
 
-    @Autowired
     private CategoryDAO categoryDao;
 
-    @Autowired
     private TeacherDAO teacherDAO;
 
-    @Autowired
     private StudentDAO studentDao;
 
     @GetMapping("/formations")

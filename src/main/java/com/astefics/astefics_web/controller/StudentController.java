@@ -4,6 +4,7 @@ import com.astefics.astefics_web.DAO.StudentDAO;
 import com.astefics.astefics_web.DAO.TeacherDAO;
 import com.astefics.astefics_web.entity.Student;
 import com.astefics.astefics_web.entity.Teacher;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,9 +14,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
+@AllArgsConstructor
 public class StudentController {
 
-    @Autowired
     private StudentDAO dao;
 
     @GetMapping("/students")

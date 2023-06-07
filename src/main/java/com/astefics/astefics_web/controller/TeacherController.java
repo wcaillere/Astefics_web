@@ -2,6 +2,7 @@ package com.astefics.astefics_web.controller;
 
 import com.astefics.astefics_web.DAO.TeacherDAO;
 import com.astefics.astefics_web.entity.Teacher;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
@@ -12,9 +13,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
+@AllArgsConstructor
 public class TeacherController {
 
-    @Autowired
     private TeacherDAO dao;
 
     @GetMapping("/teachers")

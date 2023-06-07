@@ -5,6 +5,7 @@ import com.astefics.astefics_web.entity.Formation;
 import com.astefics.astefics_web.entity.Student;
 import com.astefics.astefics_web.repository.IFormationRepository;
 import jakarta.transaction.Transactional;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,9 +14,9 @@ import java.util.Optional;
 
 @Service
 @Transactional
+@AllArgsConstructor
 public class FormationDAO {
 
-    @Autowired
     private IFormationRepository repository;
 
     public List<Formation> getAllFormations() {

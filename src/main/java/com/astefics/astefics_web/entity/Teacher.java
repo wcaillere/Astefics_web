@@ -1,12 +1,18 @@
 package com.astefics.astefics_web.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "teachers")
+@Getter
+@Setter
+@NoArgsConstructor
 public class Teacher {
 
     @Id
@@ -20,39 +26,7 @@ public class Teacher {
 
     @OneToMany(mappedBy = "teacher", targetEntity = Formation.class, cascade = CascadeType.ALL)
     private List<Formation> formations = new ArrayList<>();
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getLastname() {
-        return lastname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
-
-    public String getFirstname() {
-        return firstname;
-    }
-
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-
-    public List<Formation> getFormations() {
-        return formations;
-    }
-
-    public void setFormations(List<Formation> formations) {
-        this.formations = formations;
-    }
-
+    
     @Override
     public String toString() {
         return "Teacher{" +

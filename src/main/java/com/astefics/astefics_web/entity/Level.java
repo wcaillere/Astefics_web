@@ -1,9 +1,15 @@
 package com.astefics.astefics_web.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "levels")
+@Getter
+@Setter
+@NoArgsConstructor
 public class Level {
 
     @Id
@@ -12,23 +18,7 @@ public class Level {
     private int id;
     @Column(name = "name", nullable = false)
     private String name;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
+    
     @Override
     public String toString() {
         return "Level{" +
