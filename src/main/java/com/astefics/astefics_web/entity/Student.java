@@ -18,8 +18,15 @@ public class Student {
     @Column(name = "firstname", length = 40, nullable = false)
     private String firstname;
 
-    @ManyToMany(mappedBy = "students")
+    @ManyToMany(mappedBy = "students", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<Formation> formations = new ArrayList<>();
+
+    @PreRemove
+    private void removeFormationAssociations() {
+        for (Formation formation : this.formations) {
+            formation.getStudents().remove(this);
+        }
+    }
 
     public int getId() {
         return id;
