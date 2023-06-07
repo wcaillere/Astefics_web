@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/headfiles.html :: headfiles (title='Astefics - Catégorie')}"></head>
+<body>
+<nav th:replace="~{fragments/navbar.html :: navbar}"></nav>
+<div class="text-center mt-5" style="color: cornflowerblue">
+    <h2 class="mt-4" th:text="'Formations de catégorie \'' + ${category.getName()} + '\''"></h2>
+</div>
+<p class="text-center mt-5" th:if="${category.getFormations().size() == 0}">Aucune formation liée à cette catégorie</p>
+<table class="table table-dark table-hover table-striped m-auto mt-5" style="width: fit-content"
+       th:if="${category.getFormations().size() != 0}">
+    <thead>
+    <tr>
+        <th class="align-middle text-center" scope="col">Id</th>
+        <th class="align-middle text-center" scope="col">Catégorie</th>
+        <th class="align-middle text-center" scope="col">Nom</th>
+        <th class="align-middle text-center" scope="col">Niveau</th>
+        <th class="align-middle text-center" scope="col">Formateur</th>
+        <th class="align-middle text-center" scope="col">Date</th>
+        <th class="align-middle text-center" scope="col">Durée</th>
+        <th class="align-middle text-center" scope="col">Prix</th>
+        <th class="align-middle text-center" scope="col">En ligne</th>
+        <th class="align-middle text-center" scope="col">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="formation: ${category.getFormations()}">
+        <td class="align-middle text-center px-3" th:text="${formation.id}"></td>
+        <td class="align-middle text-center px-3" th:text="${formation.category.name}"></td>
+        <td class="align-middle text-center px-3" th:text="${formation.name}"></td>
+        <td class="align-middle text-center px-3" th:text="${formation.level.name}"></td>
+        <td class="align-middle text-center px-3" th:text="${formation.teacher.lastname}"></td>
+        <td class="align-middle text-center px-3" th:text="${#dates.format(formation.begin_at, 'dd-MM-yyyy')}"></td>
+        <td class="align-middle text-center px-3" th:text="${formation.nbDays} + ' jours'"></td>
+        <td class="align-middle text-center px-3" th:text="${formation.price} + '€'"></td>
+        <td class="align-middle text-center px-3" th:text="${formation.online} ? 'oui' : 'non'"></td>
+        <td class="align-middle text-center px-3 py-3">
+
+
+            <a class="btn btn-primary mx-2" th:href="@{/formation/{id}(id=${formation.id})}"><i class="bi bi-card-text"
+                                                                                                style="margin-right: 6px"></i>Afficher
+                Détails</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

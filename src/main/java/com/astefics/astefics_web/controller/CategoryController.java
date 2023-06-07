@@ -2,6 +2,7 @@ package com.astefics.astefics_web.controller;
 
 import com.astefics.astefics_web.DAO.CategoryDAO;
 import com.astefics.astefics_web.entity.Category;
+import com.astefics.astefics_web.entity.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +23,18 @@ public class CategoryController {
         model.addAttribute("category", new Category());
 
         return "category/categories";
+    }
+
+    @GetMapping("/category/{id}")
+    public String categoryDetails(@PathVariable("id") String id, Model model) {
+        Category category = dao.getOneCategoryById(Integer.parseInt(id));
+
+        if (category != null) {
+            model.addAttribute("category", category);
+            return "category/categoryDetails";
+        } else {
+            return "noRessource";
+        }
     }
 
     @PostMapping("/addCategory")
