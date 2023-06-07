@@ -48,7 +48,7 @@ public class FormationController {
             if (formation.getStudents().size() != 0) {
                 StringBuilder students = new StringBuilder();
                 for (Student student : formation.getStudents()) {
-                    students.append(student.getFirstname()).append(" ").append(student.getLastname()).append("\n");
+                    students.append("- ").append(student.getFirstname()).append(" ").append(student.getLastname()).append("\n");
                 }
                 students.setLength(students.length() - 1);
 
