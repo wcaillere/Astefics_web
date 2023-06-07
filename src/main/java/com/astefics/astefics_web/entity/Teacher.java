@@ -18,7 +18,7 @@ public class Teacher {
     @Column(name = "firstname", length = 40, nullable = false)
     private String firstname;
 
-    @OneToMany(mappedBy = "teacher")
+    @OneToMany(mappedBy = "teacher", targetEntity = Formation.class, cascade = CascadeType.ALL)
     private List<Formation> formations = new ArrayList<>();
 
     public int getId() {
