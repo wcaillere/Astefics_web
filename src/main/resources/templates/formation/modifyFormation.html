@@ -63,9 +63,10 @@
     <div class="mt-3 d-flex justify-content-between">
         <div>
             <label class="form-label">Catégorie</label>
-            <select class="form-select" th:field="*{category}">
+            <select class="form-select" name="category" th:object="${categories}">
                 <th:block class="form-select" th:each="category : ${categories}">
-                    <option th:text="${category.name}" th:value="${category.id}"></option>
+                    <option th:selected="${formation.category == category}" th:text="${category.name}"
+                            th:value="${category.id}"></option>
                 </th:block>
             </select>
             <span id="categoryError"
