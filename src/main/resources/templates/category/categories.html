@@ -37,9 +37,13 @@
     <h2 class="mb-3">Ajouter une catégorie</h2>
     <div class="mb-3">
         <label class="form-label">Nom</label>
-        <input class="form-control" id="name" th:field="*{name}">
+        <input class="form-control" id="name" placeholder="Nom de la catégorie" th:field="*{name}">
+        <small class="form-text text-muted" id="categoryhelp">Attention : entrer le nom d'une catégorie déjà
+            existante empêchera la création</small>
     </div>
-    <button class="btn btn-primary" type="submit">Valider</button>
+    <div>
+        <button class="btn btn-primary" type="submit">Valider</button>
+    </div>
 </form>
 
 <script>
@@ -50,7 +54,7 @@
     }
 
     function askNewName(id) {
-        let newName = prompt("Entrez le nouveau nom de la catégorie :");
+        let newName = prompt("Entrez le nouveau nom de la catégorie (S'il correspond à une catégorie déjà existante, la modification sera annulée) :");
         if (newName != null) {
             window.location.href = ("/modifyCategory/" + id + "/" + newName)
         }

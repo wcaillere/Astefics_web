@@ -20,7 +20,7 @@ public class Category {
     @Column(name = "Id")
     private int id;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", nullable = false, unique = true)
     private String name;
 
     @OneToMany(targetEntity = Formation.class, mappedBy = "category", cascade = CascadeType.ALL)

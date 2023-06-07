@@ -46,10 +46,13 @@ public class CategoryDAO {
     }
 
     public void modifyCategory(Integer id, String newName) {
-        Category category = new Category();
-        category.setId(id);
-        category.setName(newName);
+        if (repository.findCategoryByName(newName).size() == 0) {
+            Category category = new Category();
 
-        repository.save(category);
+            category.setId(id);
+            category.setName(newName);
+
+            repository.save(category);
+        }
     }
 }
