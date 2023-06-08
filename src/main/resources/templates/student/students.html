@@ -8,11 +8,11 @@
     <a class="btn btn-primary mt-4" href="/newStudent">Créer un nouveau stagiaire</a>
 </div>
 <p class="text-center mt-5" th:if="${students.size() == 0}">Pas encore de formations sauvegardées !</p>
-<table class="table table-dark table-hover table-striped m-auto mt-3" style="width: fit-content"
+<table class="table table-dark table-hover table-striped m-auto mt-3" data-toggle="table" style="width: fit-content"
        th:if="${students.size() != 0}">
     <thead>
     <tr>
-        <th class="align-middle text-center" scope="col">Id</th>
+        <th class="align-middle text-center" data-field="id" data-sortable="true" scope="col">Id</th>
         <th class="align-middle text-center" scope="col">Nom</th>
         <th class="align-middle text-center" scope="col">Prénom</th>
         <th class="align-middle text-center" scope="col">Actions</th>
