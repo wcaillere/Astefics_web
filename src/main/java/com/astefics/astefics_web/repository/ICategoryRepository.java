@@ -11,5 +11,5 @@ import java.util.List;
 public interface ICategoryRepository extends JpaRepository<Category, Integer> {
 
     @Query(value = "SELECT * FROM categories c where c.name = :name", nativeQuery = true)
-    public List<Category> findCategoryByName(String name);
+    List<Category> findCategoryByName(String name);
 }

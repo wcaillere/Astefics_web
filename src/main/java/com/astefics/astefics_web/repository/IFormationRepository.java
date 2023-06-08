@@ -11,5 +11,5 @@ import java.util.List;
 public interface IFormationRepository extends JpaRepository<Formation, Integer> {
 
     @Query(value = "SELECT * FROM formations f where f.id_category = :idCategory", nativeQuery = true)
-    public List<Formation> getFormationsByCategory(String idCategory);
+    List<Formation> getFormationsByCategory(String idCategory);
 }

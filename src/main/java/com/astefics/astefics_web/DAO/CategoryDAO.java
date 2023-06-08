@@ -36,7 +36,6 @@ public class CategoryDAO {
         if (repository.findCategoryByName(category.getName()).size() == 0) {
             repository.save(category);
         }
-        ;
     }
 
     public void deleteCategory(Integer id) {
