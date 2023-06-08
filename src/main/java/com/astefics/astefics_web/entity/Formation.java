@@ -19,27 +19,27 @@ public class Formation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-    @Column(name = "name")
+    @Column(name = "name", nullable = false, unique = true)
     private String name;
-    @Column(name = "begin_at")
+    @Column(name = "begin_at", nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date begin_at;
-    @Column(name = "nb_days")
+    @Column(name = "nb_days", nullable = false)
     private int nbDays;
-    @Column(name = "price")
+    @Column(name = "price", nullable = false)
     private float price;
     @ManyToOne(targetEntity = Level.class, cascade = {CascadeType.REFRESH, CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name = "id_level")
+    @JoinColumn(name = "id_level", nullable = false)
     private Level level;
-    @Column(name = "is_online")
+    @Column(name = "is_online", nullable = false)
     private Boolean isOnline;
-    @Column(name = "program", length = 1000)
+    @Column(name = "program", length = 1000, nullable = false)
     private String program;
     @ManyToOne(targetEntity = Category.class, cascade = {CascadeType.REFRESH, CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name = "id_category")
+    @JoinColumn(name = "id_category", nullable = false)
     private Category category;
     @ManyToOne(targetEntity = Teacher.class, cascade = {CascadeType.REFRESH, CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name = "id_teacher")
+    @JoinColumn(name = "id_teacher", nullable = false)
     private Teacher teacher;
 
     @PreRemove
