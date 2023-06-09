@@ -44,9 +44,9 @@
         <th class="align-middle text-center" scope="col">Nom</th>
         <th class="align-middle text-center" data-field="level" data-sortable="true" scope="col">Niveau</th>
         <th class="align-middle text-center" data-field="teacher" data-sortable="true" scope="col">Formateur</th>
-        <th class="align-middle text-center" scope="col">Date</th>
-        <th class="align-middle text-center" scope="col">Durée</th>
-        <th class="align-middle text-center" scope="col">Prix</th>
+        <th class="align-middle text-center" data-sortable="true" data-sorter="dateSorter" scope="col">Date</th>
+        <th class="align-middle text-center" data-sortable="true" data-sorter="nbDaysSorter" scope="col">Durée</th>
+        <th class="align-middle text-center" data-sortable="true" data-sorter="priceSorter" scope="col">Prix</th>
         <th class="align-middle text-center" data-field="isOnline" data-sortable="true" scope="col">En ligne</th>
         <th class="align-middle text-center" scope="col">Actions</th>
     </tr>
@@ -78,5 +78,7 @@
         }
     }
 </script>
+<script th:src="@{/js/sorterTable.js}"></script>
+
 </body>
 </html>
